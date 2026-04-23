@@ -756,6 +756,12 @@ a:hover {
   background: #560005;
 } */
 
+/* .result-box{
+  border: 1px solid black;
+    padding: 9px;
+    border-radius: 9px;
+} */
+
 
 
 
@@ -766,7 +772,16 @@ a:hover {
     border-radius: 8px;
     border: 1px solid #560005;
     margin: 20px 0px;
+    position: relative;
+    min-height: 120px;
 }
+ 
+.election{
+  position: relative;
+  min-height: 120px;
+}
+
+
 .top-section {
   background: transparent;
   height: 70px;
@@ -888,8 +903,8 @@ a:hover {
 
 /* Candidate image */
 .vs-img {
-  width: 100%;
-  height: auto;
+     width: 60px;
+    height: 70px;
   object-fit: cover;
 }
 
@@ -938,6 +953,58 @@ a:hover {
 .trend.down {
   color: #b71c1c;
 }
+
+
+
+#loader {
+  position: absolute;       
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); 
+
+  width: fit-content;
+  font-size: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #0000;
+  -webkit-text-stroke: 1px #000;
+
+  --l:#0000 45%,#000 0 55%,#0000 0;
+  --g:0/300% 100% no-repeat text;
+
+  background: 
+    linear-gradient(-60deg,var(--l)) var(--g),
+    linear-gradient( 60deg,var(--l)) var(--g);
+
+  animation: l7 4s linear infinite;
+
+  z-index: 9999;
+}
+#loader:before {
+  content: "Loading...";
+}
+@keyframes l7 {
+  0%  {background-position: 100%,0   }
+  50% {background-position: 0   ,0   }
+  to  {background-position: 0   ,100%}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -993,18 +1060,169 @@ a:hover {
 
 
 
+.custom-grid {
+  display: grid;
+  gap: 5px;
+background-color: #d91518;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+
+}
 
 
 
 
+.result-card {
+  position: relative;
+  background: linear-gradient(135deg, #b30000, #832323);
+  padding: 10px;
+  overflow: hidden;
+  color: #fff;
+  width: 100%;
+  min-height: 108px;
+}
+
+/* 🔥 Overlay except top */
+.result-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background: linear-gradient(
+    to bottom,
+    rgba(0,0,0,0) 0%,     /* TOP - no overlay */
+    rgba(0,0,0,0.3) 40%,
+    rgba(0,0,0,0.6) 100%  /* bottom stronger */
+  );
+
+  pointer-events: none;
+}
+
+/* keep content above */
+.result-card .content {
+  position: relative;
+  z-index: 2;
+}
+
+/* Background image (faded) */
+/* .bg-img {
+  position: absolute;
+  inset: 0;
+  background: url("/assets/images/assembly_images.png") no-repeat right bottom;
+  background-size: 80px;
+  opacity: 0.1;
+} */
 
 
+.content {
+  position: relative;
+  z-index: 2;
+}
+
+.icon img {
+    width: 147px;
+    position: absolute;
+    left: -10px;
+    top: -3px;
+    height: 102px;
+    object-fit: cover;
+    left: -28px;
+}
+
+.icon_1 img {
+    width: 52%;
+    position: absolute;
+    left: -8px;
+    top: -3px;
+    height: 101px;
+    object-fit: cover;
+}
+
+.icon {
+    width: 154px;
+    height: 197px;
+    position: absolute;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* 👉 Specific image */
+.icon.assembly {
+  background-image: url("/assets/images/new/assembly_images.png");
+}
+.rightContent {
+    position: absolute;
+    /* left: 36%; */
+    top: -3px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    z-index: 1;
+}
+
+/* text */
+.title {
+  font-size: 14px;
+  font-weight: 600;
+}
+.total{
+  font-size: 20px;
+}
+
+.count {
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.count span {
+  font-size: 12px;
+}
 
 
+.result-strip {
+  width: 150px;
+  background: linear-gradient(to bottom, #8b0000, #cc0000);
+  border-radius: 10px;
+}
+#resultContainerOne{
+  float: left;
+}
+#resultContainerTwo{
+  float: right;
+}
 
+.party-box {
+  width: 100%;
+  color: #fff;
+}
+.party_flex{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.party-icon {
+    width: 66px;
+    height: 43px;
+    object-fit: cover;
+}
 
+.party-name {
+  font-size: 14px;
+  font-weight: bold;
+  margin-top: 4px;
+}
 
-
+.seat-box {
+  background: #fff;
+  color: #c40000;
+  font-size: 28px;
+  font-weight: bold;
+  border-radius: 8px;
+  padding: 4px 0;
+  margin-top: 5px;
+}
 
 
 
