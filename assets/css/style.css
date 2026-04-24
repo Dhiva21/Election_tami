@@ -778,7 +778,8 @@ a:hover {
  
 .election{
   position: relative;
-  min-height: 120px;
+  min-height: 100px;
+  background-color: #d91518;
 }
 
 
@@ -1009,46 +1010,6 @@ a:hover {
 
 
 
-/* Responsive (no visual change, just scaling) */
-@media (max-width: 576px) {
-  .count-box {
-    font-size: 32px;
-  }
-  .top_img img {
-    width: 50px;
-    height: 50px;
-  }
-   .candidate-img {
-    width: 55px;
-    height: 65px;
-  }
-
-  .count-badge {
-    font-size: 18px;
-    padding: 5px 10px;
-  }
-
-  .trend {
-    font-size: 14px;
-  }
-   .vs-count {
-    font-size: 26px;
-    padding: 6px 12px;
-  }
-
-  .vs-img {
-    width: 60px;
-    height: 70px;
-  }
-
-  .vs-text {
-    font-size: 28px;
-  }
-
-  .trend {
-    font-size: 14px;
-  }
-}
 
 
 
@@ -1063,7 +1024,7 @@ a:hover {
 .custom-grid {
   display: grid;
   gap: 5px;
-background-color: #d91518;
+/* background-color: #d91518; */
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
 
 }
@@ -1073,31 +1034,28 @@ background-color: #d91518;
 
 .result-card {
   position: relative;
-  background: linear-gradient(135deg, #b30000, #832323);
+background: #fff;
   padding: 10px;
   overflow: hidden;
   color: #fff;
   width: 100%;
   min-height: 108px;
 }
-
-/* 🔥 Overlay except top */
-.result-card::after {
+.result-card::before {
   content: "";
   position: absolute;
   inset: 0;
-
   background: linear-gradient(
-    to bottom,
-    rgba(0,0,0,0) 0%,     /* TOP - no overlay */
-    rgba(0,0,0,0.3) 40%,
-    rgba(0,0,0,0.6) 100%  /* bottom stronger */
+    83deg,
+    rgba(220, 20, 20, 0.9) 0%,
+    rgba(150, 0, 0, 0.8) 40%,
+    rgba(0, 0, 0, 0.9) 100%
   );
 
-  pointer-events: none;
+  z-index: 1;
 }
 
-/* keep content above */
+
 .result-card .content {
   position: relative;
   z-index: 2;
@@ -1225,6 +1183,46 @@ background-color: #d91518;
 }
 
 
+/* Responsive (no visual change, just scaling) */
+@media (max-width: 576px) {
+  .count-box {
+    font-size: 32px;
+  }
+  .top_img img {
+    width: 50px;
+    height: 50px;
+  }
+   .candidate-img {
+    width: 55px;
+    height: 65px;
+  }
+
+  .count-badge {
+    font-size: 18px;
+    padding: 5px 10px;
+  }
+
+  .trend {
+    font-size: 14px;
+  }
+   .vs-count {
+    font-size: 26px;
+    padding: 6px 12px;
+  }
+
+  .vs-img {
+    width: 60px;
+    height: 70px;
+  }
+
+  .vs-text {
+    font-size: 28px;
+  }
+
+  .trend {
+    font-size: 14px;
+  }
+}
 
 
 
@@ -1395,9 +1393,9 @@ background-color: #d91518;
     margin: 0px 15px 2px;
   }
 
-  .assembly {
+  /* .assembly {
     height: 228px;
-  }
+  } */
 
   .borderBottomAssembly {
     border-bottom: 1px solid #c2b9b9;
