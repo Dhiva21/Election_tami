@@ -57,7 +57,7 @@ $(document).ready(function () {
       });
 
       const partyConfig = {
-        Assembly: { name: "முன்னிலை + வெற்றி", img: "assets/images/new/assembly_images.png", class: "assembly" },
+        Assembly: { name: "முன்னிலை + வெற்றி", img: "assets/images/assembly_images.png", class: "assembly" },
         DMK: { name: "திமுக+", img: "assets/images/new/stalin.png", class: "dmk" },
         ADMK: { name: "அதிமுக+", img: "assets/images/new/eps.png", class: "admk" },
           TVK: { name: "தவெக", img: "assets/images/vijay.png", class: "tvk" },
