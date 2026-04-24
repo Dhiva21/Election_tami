@@ -169,10 +169,10 @@ function renderPartyStrip(rawData) {
 
   const imgMap = {
     DMK: "assets/images/new/DMK.png",
-    CONGRESS: "assets/images/new/congress.png",
-    DMDK: "assets/images/new/dmdk.png",
-    VCK: "assets/images/new/vck.png",
-    MDMK: "assets/images/new/mdmk.png",
+    CONGRESS: "assets/images/new/Congress.png",
+    DMDK: "assets/images/new/DMDK.png",
+    VCK: "assets/images/new/VCK.png",
+    MDMK: "assets/images/new/MDMK.png",
     OTHERS: "assets/images/new/others.png"
   };
 
@@ -243,11 +243,11 @@ function renderADMKStrip(rawData) {
   };
 
   const imgMap = {
-    ADMK: "assets/images/new/admk.png",
-    BJP: "assets/images/new/bjp.png",
-    PMK: "assets/images/new/pmk.png",
-    AMMK: "assets/images/new/ammk.png",
-    TMC: "assets/images/new/tmc.png",
+    ADMK: "assets/images/new/ADMK.png",
+    BJP: "assets/images/new/BJP.png",
+    PMK: "assets/images/new/PMK.png",
+    AMMK: "assets/images/new/AMMK.png",
+    TMC: "assets/images/new/TMC.png",
     OTHERS: "assets/images/new/others.png"
   };
 
