@@ -100,6 +100,7 @@ $(document).ready(function () {
 
         return `
           <div class="result-card ${config.class}">
+           <div class="overlay-white"></div>
             <div class="content d-flex align-items-center">
               
               <div class="icon_1">
@@ -109,7 +110,7 @@ $(document).ready(function () {
               <div class="text ms-2 rightContent">
                 <div class="title">${config.name}</div>
                 <p class="count" id="count-${i}">${item.seats || 0}</p>
-                <p>/ 234</p>
+                
               </div>
 
             </div>
@@ -123,20 +124,35 @@ $(document).ready(function () {
   loader.style.display = "none";
   container.style.display = "block";
 }
+else {
 
-      // ✅ LIVE UPDATE
-      else {
-        parties.forEach((item, i) => {
-          const el = document.getElementById(`count-${i}`);
-          if (el) {
-            el.innerText = item.seats || 0;
+  // 🔥 update individual party counts
+  parties.forEach((item, i) => {
+    const el = document.getElementById(`count-${i}`);
+    if (el) {
+      const seat = Number(item.seats || 0);
+      el.innerText = seat;
 
-            // 🔥 optional animation
-            el.classList.add("pulse");
-            setTimeout(() => el.classList.remove("pulse"), 300);
-          }
-        });
-      }
+      el.classList.add("pulse");
+      setTimeout(() => el.classList.remove("pulse"), 300);
+    }
+  });
+
+  // ✅ 🔥 DIRECT total from result (best way)
+  const totalSeats =
+    Number(result.alis1 || 0) +
+    Number(result.alis2 || 0) +
+    Number(result.alis3 || 0) +
+    Number(result.alis4 || 0);
+
+  const totalEl = document.getElementById("total-count");
+  if (totalEl) {
+    totalEl.innerText = totalSeats;
+
+    totalEl.classList.add("pulse");
+    setTimeout(() => totalEl.classList.remove("pulse"), 300);
+  }
+}
 
     } catch (err) {
       console.error(err);
@@ -260,7 +276,7 @@ function renderADMKStrip(rawData) {
 
     if (!item.party) return;
 
-    // 👉 Extract party name
+
     const match = item.party.match(/(.*)\(/);
     if (!match) return;
 

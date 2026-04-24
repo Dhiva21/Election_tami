@@ -1055,7 +1055,9 @@ background: #fff;
   z-index: 1;
 }
 
-
+.overlay-white {
+  backdrop-filter: blur(4px);
+}
 .result-card .content {
   position: relative;
   z-index: 2;
@@ -1096,19 +1098,18 @@ background: #fff;
 }
 
 .icon {
-    width: 149px;
-    height: 111px;
+    width: 154px;
+    height: 262px;
     position: absolute;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    bottom: -119px;
-    left: -36px;
+    left: -18px;
+    bottom: -98px;
 }
-
 /* 👉 Specific image */
 .icon.assembly {
-  background-image: url("../images/assembly_images.png");
+  background-image: url("../images/new/assembly_images.png");
 }
 .rightContent {
     position: absolute;
