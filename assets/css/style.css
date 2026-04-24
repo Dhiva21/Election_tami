@@ -1108,7 +1108,7 @@ background: #fff;
 
 /* 👉 Specific image */
 .icon.assembly {
-  background-image: url("/assets/images/assembly_images.png");
+  background-image: url("../images/assembly_images.png");
 }
 .rightContent {
     position: absolute;
