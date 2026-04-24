@@ -1096,17 +1096,19 @@ background: #fff;
 }
 
 .icon {
-    width: 154px;
-    height: 197px;
+    width: 149px;
+    height: 111px;
     position: absolute;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    bottom: -119px;
+    left: -36px;
 }
 
 /* 👉 Specific image */
 .icon.assembly {
-  background-image: url("/assets/images/new/assembly_images.png");
+  background-image: url("/assets/images/assembly_images.png");
 }
 .rightContent {
     position: absolute;
