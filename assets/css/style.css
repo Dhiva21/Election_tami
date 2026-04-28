@@ -1256,7 +1256,7 @@ background: linear-gradient(
     font-size: 20px;
     font-weight: 400;
     text-align: center;
-    padding: 0px 21px;
+      padding: 17px 21px 3px;
 }
 .rightContent_assembly .title{
     text-align: center;
@@ -1277,7 +1277,7 @@ background: linear-gradient(
   text-shadow: 2px 2px 2px #000000;
 }
 .countFont{
-  font-size: 40px;
+  font-size: 45px;
 }
 .count span {
   font-size: 12px;
@@ -1441,6 +1441,16 @@ background: linear-gradient(
 }
 
 @media only screen and (max-width: 1024px) {
+  .icon_1 img {
+    width: 62%;
+    position: absolute;
+    left: -15px;
+    top: 23px;
+    height: auto;
+    object-fit: cover;
+    z-index: 5;
+}
+
 
   .rightContent_assembly {
     position: absolute;
@@ -1676,6 +1686,16 @@ background: linear-gradient(
 @media only screen and (min-width: 480px) {}
 
 @media only screen and (max-width: 480px) {
+
+      .icon_1 img {
+        width: 52%;
+        position: absolute;
+        left: -2px;
+        top: 31px;
+        height: auto;
+        object-fit: cover;
+        z-index: 5;
+    }
  
     .candidate_grid {
       display: grid;

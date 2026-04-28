@@ -137,7 +137,7 @@ function indexCard(data, isUpdate = false) {
                       <p class="count mb-0 countFont" id="count-${i}">
                         ${current}
                       </p>
-                      ${diffHtml}
+               
                     </div>
 
                   </div> 
@@ -169,7 +169,7 @@ function indexCard(data, isUpdate = false) {
             <p class="count mb-0 countFont" id="count-${i}">
               ${current}
             </p>
-            ${diffHtml}
+           
           `;
 
           el.classList.add("pulse");

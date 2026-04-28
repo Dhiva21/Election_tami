@@ -15,7 +15,7 @@ function renderADMKStrip(rawData) {
     BJP: "பாஜக",
     PMK: "பாமக",
     AMMK: "அமமுக",
-    TMC: "தமக",
+    TMC: "தமாகா",
     OTHERS: "மற்றவை"
   };
 
