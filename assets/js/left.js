@@ -121,7 +121,7 @@ function renderPartyStrip(rawData, isUpdate = false) {
        
      renderPartyStrip(data, true)
       })
-  }, 11000);
+  }, 3000);
  
     fetch(leftUrl);
    
