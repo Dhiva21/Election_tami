@@ -95,7 +95,7 @@ function renderPartyStrip(rawData, isUpdate = false) {
         return `
           <div class="party-box text-center mb-3">
             
-            <div class="party_flex d-flex align-items-center justify-content-center gap-1">
+            <div class="party_flex gap-1">
               <img src="${img}" class="party-icon" />
               <div class="party-name">${name}</div>
             </div>
@@ -121,7 +121,7 @@ function renderPartyStrip(rawData, isUpdate = false) {
        
      renderPartyStrip(data, true)
       })
-  }, 3000);
+  }, 11000);
  
     fetch(leftUrl);
    

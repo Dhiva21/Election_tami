@@ -68,7 +68,7 @@ function renderADMKStrip(rawData) {
         return `
           <div class="party-box text-center mb-3">
             
-            <div class="party_flex d-flex align-items-center justify-content-center gap-1">
+            <div class="party_flex gap-1">
               <img src="${img}" class="party-icon" />
               <div class="party-name ms-2">${name}</div>
             </div>
