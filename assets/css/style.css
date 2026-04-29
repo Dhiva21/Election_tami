@@ -1156,7 +1156,7 @@ background: #fff;
     width: 52%;
     position: absolute;
     left: -15px;
-    top: 3px;
+       bottom: -18px;
     height: auto;
     object-fit: cover;
     z-index: 5;
@@ -1483,8 +1483,7 @@ background: linear-gradient(
     height: 120px;
 }
 .title {
-    font-size: 16px;
-    font-weight: 600;
+    font-size: 15px;
 }
 
   .candidateName {
@@ -1587,10 +1586,7 @@ background: linear-gradient(
     z-index: 1;
     height: 120px;
 }
-.title {
-    font-size: 16px;
-    font-weight: 600;
-}
+
 .icon_1 img {
     width: 52%;
     position: absolute;
@@ -1757,6 +1753,15 @@ background: linear-gradient(
 
 @media only screen and (max-width: 414px) {
 
+    .icon_1 img {
+        width: 52%;
+        position: absolute;
+        left: -2px;
+        top: 0px;
+        height: auto;
+        object-fit: cover;
+        z-index: 5;
+    }
 
   /* .borderBottomCanidate {
     height: 263px;
