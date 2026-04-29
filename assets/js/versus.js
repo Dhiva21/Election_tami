@@ -1,191 +1,239 @@
 $(document).ready(function () {
- 
-var versusUrl = 'https://script.google.com/macros/s/AKfycbycjiYgmD-4A4BadxOOWueWqwcEEBCpQjR5yZdW-aCNBKl4dCmfKBYMCVXjSrnAqkA/exec?sheetName=VVIP_VSCard';
 
-const versus = document.getElementById("app");
-let isInitialized = false;
+  var versusUrl = 'https://script.google.com/macros/s/AKfycbycjiYgmD-4A4BadxOOWueWqwcEEBCpQjR5yZdW-aCNBKl4dCmfKBYMCVXjSrnAqkA/exec?sheetName=VVIP_VSCard';
 
-// 🔹 Trend UI
-function getTrendHTML(result) {
-  if (result === "LEAD") {
-    return `
-      <div class="leading">
-        <div class="trend up">முன்னிலை</div>
-        <img src="assets/images/party/UP.png" alt="up">
-      </div>`;
-  } else {
-    return `
-      <div class="leading">
-        <div class="trend down">பின்னடைவு</div>
-        <img src="assets/images/party/Down.png" alt="down">
-      </div>`;
+  const versus = document.getElementById("app");
+  let isInitialized = false;
+
+  // 🔹 Trend UI
+  function getTrendHTML(result) {
+    if (result === "LEAD") {
+      return `
+        <div class="leading">
+          <div class="trend up">முன்னிலை</div>
+          <img src="assets/images/party/UP.png">
+        </div>`;
+    } else {
+      return `
+        <div class="leading">
+          <div class="trend down">பின்னடைவு</div>
+          <img src="assets/images/party/Down.png">
+        </div>`;
+    }
   }
-}
 
-function renderCarousel(data) {
+  // 🔥 IMAGE CHECK (NO FLICKER)
+  function getSafeImage(name) {
+    const clean = (name || "").trim();
+    const path = `assets/images/versus/${clean}.png`;
+    const fallback = "assets/images/versus/default.png";
 
-  let html = `<div class="owl-carousel vs-carousel">`;
+    return new Promise((resolve) => {
+      const img = new Image();
+      img.onload = () => resolve(path);
+      img.onerror = () => resolve(fallback);
+      img.src = path;
+    });
+  }
 
-  data.forEach((item, i) => {
-    html += `
-    <div class="item">
-      <div class="bg-color">
+  // 🔹 INITIAL RENDER (ASYNC)
+  async function renderCarousel(data) {
 
-        <div class="location">${item.vlocan}</div>
+    let html = `<div class="owl-carousel vs-carousel">`;
 
-        <div class="row align-items-center text-center">
+    for (let i = 0; i < data.length; i++) {
 
-          <!-- LEFT -->
-          <div class="col-5">
-            <div class="row align-items-center justify-content-end">
-              
-              <div class="col-auto">
-                <img src="assets/images/party/${item.lparty}.png" class="vs-img">
-              </div>
+      const item = data[i];
 
-              <div class="col-auto text-center">
-                <div id="lvote-${i}" class="vs-count">
-                  ${item.lvote.toLocaleString()}
+      const lsrc = await getSafeImage(item.limg);
+      const rsrc = await getSafeImage(item.rimg);
+
+      html += `
+      <div class="item">
+        <div class="bg-color">
+
+          <div class="location">${item.vlocan}</div>
+
+          <div class="row align-items-center text-center">
+
+            <!-- LEFT -->
+            <div class="col-lg-5 col-md-5">
+              <div class="row align-items-center justify-content-end">
+                
+                <div class="col-md-6 col-6">
+                <div class="leftImage">
+                  <img id="limg-${i}" src="${lsrc}" class="vs-img">
+                  <p> ${item.lname} </p>
+                </div>
+                 </div>
+
+                <div class="col-md-6 col-6 text-center">
+                  <div id="lvote-${i}" class="vs-count">
+                    ${item.lvote.toLocaleString()}
+                  </div>
+
+                  <div id="ltrend-${i}">
+                    ${getTrendHTML(item.lresult)}
+                  </div>
                 </div>
 
-                <div id="ltrend-${i}">
-                  ${getTrendHTML(item.lresult)}
-                </div>
               </div>
-
             </div>
-          </div>
 
-          <!-- VS -->
-          <div class="col-2">
-            <div class="vs-text">VS</div>
-          </div>
-
-          <!-- RIGHT -->
-          <div class="col-5">
-            <div class="row align-items-center justify-content-start">
-              
-              <div class="col-auto text-center">
-                <div id="rvote-${i}" class="vs-count">
-                  ${item.rvote.toLocaleString()}
-                </div>
-
-                <div id="rtrend-${i}">
-                  ${getTrendHTML(item.rresult)}
-                </div>
-              </div>
-
-              <div class="col-auto">
-                <img src="assets/images/party/${item.rparty}.png" class="vs-img">
-              </div>
-
+            <!-- VS -->
+            <div class="col-lg-2 col-md-2">
+            <div class="vs-image"> 
+              <img src="assets/images/versus/VS.png" alt="">
             </div>
+             </div>
+
+            <!-- RIGHT -->
+            <div class="col-lg-5 col-md-5">
+              <div class="row align-items-center justify-content-start">
+                
+                <div class="col-md-6 col-6 text-center">
+                  <div id="rvote-${i}" class="vs-count">
+                    ${item.rvote.toLocaleString()}
+                  </div>
+
+                  <div id="rtrend-${i}">
+                    ${getTrendHTML(item.rresult)}
+                  </div>
+                </div>
+
+                <div class="col-md-6 col-6">
+                <div class="leftImage">
+                
+                  <img id="rimg-${i}" src="${rsrc}" class="vs-img">
+                 <p> ${item.rname} </p>
+                </div>
+                <div >
+                
+                 
+                   
+                </div>
+                  
+                </div>
+
+              </div>
+            </div>
+
           </div>
 
         </div>
-
-      </div>
-    </div>`;
-  });
-
-  html += `</div>`;
-  versus.innerHTML = html;
-
-  // 🔥 INIT OWL ONLY ONCE
-  $('.vs-carousel').owlCarousel({
-    loop: true,
-    margin: 10,
-    nav: true,
-    dots: false,
-    autoplay: true,
-    autoplayTimeout: 3000,
-    autoplayHoverPause: true,
-    navText: [
-      "<span class='custom-prev'>‹</span>",
-      "<span class='custom-next'>›</span>"
-    ],
-    responsive: {
-      0: { items: 1 },
-      768: { items: 1 },
-      1024: { items: 1 }
-    }
-  });
-}
-
-// 🔹 UPDATE ONLY (🔥 முக்கியம்)
-function updateVS(data) {
-
-  data.forEach((item, i) => {
-
-    const lvoteEl = document.getElementById(`lvote-${i}`);
-    const rvoteEl = document.getElementById(`rvote-${i}`);
-    const ltrendEl = document.getElementById(`ltrend-${i}`);
-    const rtrendEl = document.getElementById(`rtrend-${i}`);
-
-    if (lvoteEl) {
-      lvoteEl.innerText = item.lvote.toLocaleString();
-      ltrendEl.innerHTML = getTrendHTML(item.lresult);
-
-      // 🔥 small animation
-      lvoteEl.classList.add("pulse");
-      setTimeout(() => lvoteEl.classList.remove("pulse"), 300);
+      </div>`;
     }
 
-    if (rvoteEl) {
-      rvoteEl.innerText = item.rvote.toLocaleString();
-      rtrendEl.innerHTML = getTrendHTML(item.rresult);
+    html += `</div>`;
+    versus.innerHTML = html;
 
-      rvoteEl.classList.add("pulse");
-      setTimeout(() => rvoteEl.classList.remove("pulse"), 300);
-    }
+    $('.vs-carousel').owlCarousel({
+      loop: true,
+      margin: 10,
+      nav: true,
+      dots: false,
+      autoplay: false,
+      navText: [
+        "<span class='custom-prev'>‹</span>",
+        "<span class='custom-next'>›</span>"
+      ],
+      responsive: {
+        0: { items: 1 },
+        768: { items: 1 },
+        1024: { items: 1 }
+      }
+    });
+  }
 
-  });
-}
+  // 🔥 UPDATE IMAGE (NO FLICKER)
+  function updateImageNoFlicker(imgEl, name) {
+    if (!imgEl) return;
 
-// 🔹 LOAD FUNCTION
-function loadVS() {
-  fetch(versusUrl)
-    .then(res => res.json())
-    .then(data => {
+    const clean = (name || "").trim();
+    const path = `assets/images/versus/${clean}.jpg`;
+    const fallback = "assets/images/versus/default.png";
 
-      if (!isInitialized) {
-        renderCarousel(data); // first time மட்டும்
-        isInitialized = true;
-      } else {
-        updateVS(data); // values மட்டும் update
+    if (imgEl.src.includes(clean)) return;
+
+    const temp = new Image();
+
+    temp.onload = () => {
+      imgEl.src = path + "?t=" + Date.now();
+    };
+
+    temp.onerror = () => {
+      imgEl.src = fallback;
+    };
+
+    temp.src = path;
+  }
+
+  // 🔹 UPDATE (NO RE-RENDER)
+  function updateVS(data) {
+
+    data.forEach((item, i) => {
+
+      const lvoteEl = document.getElementById(`lvote-${i}`);
+      const rvoteEl = document.getElementById(`rvote-${i}`);
+      const ltrendEl = document.getElementById(`ltrend-${i}`);
+      const rtrendEl = document.getElementById(`rtrend-${i}`);
+      const limgEl = document.getElementById(`limg-${i}`);
+      const rimgEl = document.getElementById(`rimg-${i}`);
+
+      // LEFT VOTE
+      if (lvoteEl && lvoteEl.innerText !== item.lvote.toLocaleString()) {
+        lvoteEl.innerText = item.lvote.toLocaleString();
+        lvoteEl.classList.add("pulse");
+        setTimeout(() => lvoteEl.classList.remove("pulse"), 300);
       }
 
-    })
-    .catch(err => console.error(err));
-}
+      // LEFT TREND
+      if (ltrendEl) {
+        ltrendEl.innerHTML = getTrendHTML(item.lresult);
+      }
 
-// 🚀 FIRST LOAD
-loadVS();
+      // LEFT IMAGE
+      updateImageNoFlicker(limgEl, item.limg);
 
-// 🔄 AUTO REFRESH (5 sec)
-setInterval(loadVS, 3000);
+      // RIGHT VOTE
+      if (rvoteEl && rvoteEl.innerText !== item.rvote.toLocaleString()) {
+        rvoteEl.innerText = item.rvote.toLocaleString();
+        rvoteEl.classList.add("pulse");
+        setTimeout(() => rvoteEl.classList.remove("pulse"), 300);
+      }
 
+      // RIGHT TREND
+      if (rtrendEl) {
+        rtrendEl.innerHTML = getTrendHTML(item.rresult);
+      }
 
+      // RIGHT IMAGE
+      updateImageNoFlicker(rimgEl, item.rimg);
 
+    });
+  }
 
+  // 🔹 FETCH
+  function loadVS() {
+    fetch(versusUrl)
+      .then(res => res.json())
+      .then(async data => {
 
+        if (!isInitialized) {
+          await renderCarousel(data);
+          isInitialized = true;
+        } else {
+          updateVS(data);
+        }
 
+      })
+      .catch(err => console.error(err));
+  }
 
+  // 🚀 FIRST LOAD
+  loadVS();
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  // 🔄 AUTO REFRESH
+  setInterval(loadVS, 3000);
 
 });
